@@ -1,5 +1,5 @@
 export default class SwapiService {
-  
+
   _apiBase = 'https://swapi.co/api';
   _apiPage = 'https://swapi.co/api/people/?page=';
   // _apiPage = 'https://swapi.co/api/people/';
@@ -10,7 +10,7 @@ export default class SwapiService {
     return await num.json();
   };
 
-  
+
 
   nextPage = async () => {
     const next = await fetch('https://swapi.co/api/people/');
@@ -30,13 +30,10 @@ export default class SwapiService {
 
   getAllPeople = async () => {
     const res = await this.getResource(`/people/`);
-    return res.results
-      .map(this._transformPerson)
-      
+    return res
   };
 
   getPages = async (n) => {
-    n = 3;
     const page = await this.getResource(`/people/?page=${n}`);
     return page.results.map(this._transformPerson)
   }
